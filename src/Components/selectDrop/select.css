@@ -14,6 +14,8 @@
 .selectDropCursor .openSelect{
     display: block;
     padding: 10px 0px;
+    width:30px !important;
+   
 }
 
 .searchField input{
