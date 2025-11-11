@@ -9,9 +9,17 @@ import IconCompare from '../../assets/images/compare-header.svg'
 import IconWishlist from '../../assets/images/wishlist-header.svg'
 import IconCart from '../../assets/images/cart-header.svg'
 import IconAccount from '../../assets/images/account-header.svg'
+import Button from '@mui/material/Button';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import LocationSearchingOutlinedIcon from '@mui/icons-material/LocationSearchingOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import Nav from '../Header/Nav/nav';
 
 const Header = () => {
-
+  const[isOpenDropDown,setisOpenDropDown] = useState(false);
   const [categories,setcategories] = useState([
     'Milks & Dairies',
     'Wines & Drinks',
@@ -80,10 +88,18 @@ const Header = () => {
          <div className="col-sm-5 d-flex align-items-center justify-content-end" style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'nowrap' }}>
            <div className='ml-auto d-flex align-items-center '>
             <div className="locationWrapper" style={{ display: 'inline-flex', alignItems: 'center', flex: '0 0 auto' }}>
-             <Select data={countryList} placeholder={'Your Location'} icon={<LocationOnOutlinedIcon style={{ opacity: '0.5', fontSize: '20px' }} />} style={{ width: 'auto', minWidth: '140px' }} />
-            </div>
+              <Select data={countryList} placeholder="Your Location" icon={<LocationOnOutlinedIcon style={{ opacity: 0.5, fontSize: '16px' }} />}
+                style={{width: 'auto',
+                  minWidth: '160px',   // increased a bit for full text visibility
+                  fontSize: '13px',    // reduced font size
+                  whiteSpace: 'nowrap', // prevent wrapping
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis', }}/>
+              </div>
+
+            <ClickAwayListener onClickAway={() => setisOpenDropDown(false)}>
             <ul className="list list-inline mb-0 headerTabs" style={{ display: 'inline-flex', alignItems: 'center', margin: 0, padding: "0 ", listStyle: 'none', flex: '0 0 auto' }}>
-              <li className="list-inline-item" style={{ display: 'inline-flex', alignItems: 'center', }}>
+              <li className="list-inline-item" style={{ display: 'inline-flex', alignItems: 'center' }}>
                 <span style={{ display: "inline-flex", alignItems: "center" ,fontSize: "17px", paddingLeft:"5px"}}><img src={IconCompare} style={{ width: "20px", marginRight: "6px" }}  />Compare</span>
               </li>
 
@@ -94,16 +110,35 @@ const Header = () => {
               <li className="list-inline-item" style={{ display: 'inline-flex', alignItems: 'center' }}>
                 <span style={{ display: "inline-flex", alignItems: "center",fontSize: "17px" ,paddingLeft:"5px"}}><img src={IconCart} style={{ width: "20px", marginRight: "6px" }}  />Cart</span>
               </li>
-
+              
               <li className="list-inline-item" style={{ display: 'inline-flex', alignItems: 'center' }}>
-                <span style={{ display: "inline-flex", alignItems: "center",fontSize: "17px",paddingLeft:"5px" }}><img src={IconAccount} style={{ width: "20px", marginRight: "6px" }}  />Account</span>
+                
+                <span style={{ display: "inline-flex", alignItems: "center",fontSize: "17px",paddingLeft:"5px" }}
+                onClick={()=> setisOpenDropDown(!isOpenDropDown)}><img src={IconAccount} style={{ width: "20px", marginRight: "6px" }}  />Account</span>
+                
+                {
+                  isOpenDropDown!==false && <ul className='dropDownMenu'>
+                  <li><Button><PersonOutlineOutlinedIcon/>My Account</Button></li>
+                  <li><Button><LocationSearchingOutlinedIcon/>Order Tracking</Button></li>
+                  <li><Button><FavoriteBorderOutlinedIcon/>My Wishlist</Button></li>
+                  <li><Button><SettingsOutlinedIcon/>Settings</Button></li>
+                  <li><Button><LogoutOutlinedIcon/>Sign Out</Button></li>
+                </ul>
+                }
+                
+                
+                
               </li>
+              
             </ul>
+            </ClickAwayListener>
            </div>
          </div>
+       
         </div>
       </div>
     </header>
+    
   );
 };
 
