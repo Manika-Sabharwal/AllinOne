@@ -16,7 +16,7 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
-import Nav from '../Header/Nav/nav';
+import Nav from '../Header/Nav/nav'
 
 const Header = () => {
   const[isOpenDropDown,setisOpenDropDown] = useState(false);
@@ -62,6 +62,7 @@ const Header = () => {
 
 
   return (
+   <>
     <header>
       <div className="container-fluid">
         <div className="row align-items-center">
@@ -139,6 +140,9 @@ const Header = () => {
       </div>
     </header>
     
+    
+    <Nav />
+    </>
   );
 };
 

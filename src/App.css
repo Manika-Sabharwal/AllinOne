@@ -13,3 +13,10 @@ body{  font-family: "Roboto", sans-serif;}
 .cursor{
   cursor: pointer;
 }
+.bg-g, .bg-success { 
+  background: #3bb77e !important; 
+}
+
+.text-g { 
+  color: #3bb77e; 
+}
