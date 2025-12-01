@@ -39,7 +39,7 @@ const Header = () => {
   const countryList = []
 
   useEffect(()=>{
-    getCountry('https://countriesnow.space/api/v0.1/countries');
+    getCountry('https://ai-translate.p.rapidapi.com/languages ');
   },[]);
 
   const getCountry = async(url) =>{
